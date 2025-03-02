@@ -41,7 +41,7 @@ An intelligent automated content management system for LinkedIn that leverages G
 ### Environment Setup
 1. Clone the repository
 ```bash
-git clone [repository-url]
+git clone [[repository-url](https://github.com/Shalabhsinghyadav01/ai-agent.git)]
 cd linkedin-agent
 ```
 
@@ -140,9 +140,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - LinkedIn API for platform integration
 - Open source community for various dependencies
 
-## 📞 Support
-
-For support, please open an issue in the GitHub repository or contact the maintainers.
-
----
-Built with ❤️ for the Data Science Community 
+## Contact
+If you have any questions or want to discuss the project, feel free to reach out:
+- **Name**: Shalabh Singh Yadav
+- **Email**: [shalabhsinghyadav@gmail.com](mailto:shalabhsinghyadav@gmail.com)
+- **LinkedIn**: [LinkedIn Profile](https://www.linkedin.com/in/shalabh-singh-yadav-66b607204/)
+- **Tableau**: [Tableau Profile](https://public.tableau.com/app/profile/shalabh.yadav/vizzes)
