@@ -42,10 +42,10 @@ def should_post_now(target_hour: int) -> bool:
     except Exception as e:
         logging.warning(f"Error reading last post time: {e}")
     
-    # Post if current hour is within 5 hours after target hour
-    # This allows recovery from sleep while preventing too-late posts
+    # Post if current hour is within 2 hours after target hour
+    # This allows recovery from short interruptions while preventing duplicate posts
     return (now.hour >= target_hour and 
-            now.hour <= target_hour + 5)
+            now.hour < target_hour + 2)  # Changed from <= target_hour + 5
 
 def record_post(target_hour: int):
     """Record the time of successful post"""
@@ -106,17 +106,18 @@ def main():
         # Schedule afternoon post (3:00 PM)
         schedule.every().day.at("15:00").do(run_agent, target_hour=15)
         
-        # Check for missed posts on startup
-        check_missed_posts()
+        # Check for missed posts on startup, but only if within recovery window
+        now = datetime.now()
+        if now.hour in [10, 11, 15, 16]:  # Only check during recovery windows
+            check_missed_posts()
         
         # Keep the script running
         while True:
             schedule.run_pending()
             time.sleep(60)  # Check schedule every minute
             
-            # Check for missed posts every hour
-            if datetime.now().minute == 0:
-                check_missed_posts()
+            # Remove hourly checks for missed posts to prevent duplicates
+            # The scheduled tasks will handle regular posting
             
     except Exception as e:
         logging.error(f"Critical error in scheduler: {str(e)}", exc_info=True)
